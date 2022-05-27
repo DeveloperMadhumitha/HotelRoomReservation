@@ -1,0 +1,38 @@
+﻿@page "{Roomd}"
+@model HotelRoomReservation.Pages.Rooms.EditModel
+@{
+}
+<form method="post">
+    <h4> Update  Room Details </h4>
+    <div class="row">
+        <div class="col-sm-6">
+        <label asp-for="@Model.RoomNumber"> </label>
+        <input class="form-control" asp-for="@Model.RoomNumber" />
+        </div>
+        <div class="col-sm-6">
+        <label asp-for="@Model.RoomType"></label>
+        <input type="text" class="form-control" asp-for="@Model.RoomType" />
+        </div>
+    </div>
+      <div class="row">
+        <div class="col-sm-6">
+        <label asp-for="@Model.Price"> </label>
+        <input class="form-control" asp-for="@Model.Price" />
+        </div>
+        <div class="col-sm-6">
+        <label asp-for="@Model.Availability"></label>
+        <input type="text" class="form-control" asp-for="@Model.Availability" />
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary ">Submit</button>
+        <a href="/Rooms/List" class="btn btn-primary col-sm-3" role="button">Back</a>
+    </div>
+
+    <div class="form-group">
+        <h5 class="text-success">@Model.SuccessMessage</h5>
+        <h5 class="text-success">@Model.ErrorMessage</h5>
+        <h6 class="text-danger">@Html.ValidationSummary()</h6>
+
+    </div>
+</form>

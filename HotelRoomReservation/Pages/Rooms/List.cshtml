@@ -1,0 +1,59 @@
+﻿@page
+@model HotelRoomReservation.Pages.Rooms.ListModel
+@{
+}
+<form method="post">
+<div class="row">
+    <div class="col-sm-9">
+        <h3 class=text-center> List Of Rooms</h3>
+    </div>
+     <div class="col-sm-1">
+            <a href="/Rooms/Add" class="btn btn-outline-info" role="button"><i class="fa fa-add">ADD</i> </a>
+     </div>
+</div>
+<div class="row">
+    <div class="col-sm-9"> <input type="text" asp-for="@Model.SearchText" class="form-control" placeholder="search room by name " /></div>
+
+<div class="col-sm-1" >
+    <button type="submit" asp-page-handler="search" class="btn btn-outline-primary"><i class="fa fa-search"></i> </button>
+    </div>
+    <div class="col">
+        <button type="clear" asp-page-handler="clear" class="btn btn-outline-secondary"><i class="fa fa-times"></i> </button>
+    </div>
+    <div class="text-success">@Model.SuccessMessage</div>
+         <div class="text-danger">@Model.ErrorMessage</div>
+         <h6 class="text-danger">@Html.ValidationSummary()</h6>
+    </div>
+    
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">RoomId</th>
+            <th scope="col">RoomNumber</th>
+            <th scope="col">RoomType</th>
+            <th scope="col">Price</th>
+            <th scope="col">Availability</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var s in @Model.Rooms)
+        {
+            <tr>
+                <td>@s.RoomId</td>
+                <td>@s.RoomNumber</td>
+                
+                <td>@s.RoomType</td>
+                <td>@s.Price</td>
+                <td>@s.Availability</td>
+                
+                <td><a href="/Rooms/Edit/@s.RoomId" class="btn btn-outline-warning" role="Button" ><i class="fa fa-edit"></i> </a></td>
+                <td><a href="/Rooms/Delete/@s.RoomId" class="btn btn-outline-danger" role="Button" ><i class="fa fa-trash"></i> </a></td>
+
+                
+            </tr>
+        }
+    </tbody>
+
+</table>
+</form>

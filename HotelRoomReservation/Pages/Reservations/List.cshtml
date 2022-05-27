@@ -1,0 +1,72 @@
+﻿@page
+@model HotelRoomReservation.Pages.Reservations.ListModel
+@{
+}
+<form method="post">
+<div class="row">
+    <div class="col-sm-9">
+        <h3 class=text-center> List Of Reservations</h3>
+    </div>
+     <div class="col-sm-1">
+            <a href="/Reservations/Add" class="btn btn-outline-info" role="button"><i class="fa fa-add">ADD</i> </a>
+     </div>
+</div>
+<div class="row">
+    <div class="col-sm-9"> <input type="text" asp-for="@Model.SearchText" class="form-control" placeholder="search reservation by name " /></div>
+
+<div class="col-sm-1" >
+    <button type="submit" asp-page-handler="search" class="btn btn-outline-primary"><i class="fa fa-search"></i> </button>
+    </div>
+    <div class="col">
+        <button type="clear" asp-page-handler="clear" class="btn btn-outline-secondary"><i class="fa fa-times"></i> </button>
+    </div>
+    <div class="text-success">@Model.SuccessMessage</div>
+         <div class="text-danger">@Model.ErrorMessage</div>
+         <h6 class="text-danger">@Html.ValidationSummary()</h6>
+    </div>
+    
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ReservationId</th>
+            <th scope="col">RoomId</th>
+            <th scope="col">CustomerId</th>
+            <th scope="col">DateIn</th>
+            <th scope="col">DateOut</th>
+            <th scope="col">Cost</th>
+            <th scope="col">PaymentType</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model.Reservations==null || Model.Reservations.Count < 0)
+            {
+                <tr>
+                    <td>No Data Found</td>
+                </tr>
+            }
+            else{
+            @foreach(var s in Model.Reservations)
+        {
+            <tr>
+                <td>@s.ReservationId</td>
+                <td>@s.RoomId</td>
+                <td>@s.CustomerId</td>
+                <td>@s.DateIn</td>
+                <td>@s.DateOut</td>
+                <td>@s.Cost</td>
+                <td>@s.PaymentType</td>
+                <td>@s.Status</td>
+                
+                <td><a href="/Rooms/Edit/@s.ReservationId" class="btn btn-outline-warning" role="Button" ><i class="fa fa-edit"></i> </a></td>
+                <td><a href="/Rooms/Delete/@s.ReservationId" class="btn btn-outline-danger" role="Button" ><i class="fa fa-trash"></i> </a></td>
+
+                
+            </tr>
+        }
+        }
+    </tbody>
+
+</table>
+</form>

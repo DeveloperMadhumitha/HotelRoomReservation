@@ -1,0 +1,67 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+        <h4>@Model.ErrorMessage</h4>
+@if (User.Identity.IsAuthenticated)
+{
+    <h4 class="display-4">Welcome @HttpContext.User.Identity.Name</h4>
+}
+else
+{
+     <h4 >Please click here to <a href="/Login">Login</a> </h4>
+     <h4>New Customer? Please Register Here! <a href="/Register">Register</a></h4>
+
+
+
+    @if (User.IsInRole("Admin"))
+    {
+          
+
+        <div class="row">
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-blue db-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Rooms</h6>
+                        <h2 class="text-end"><i class="fa fa-person float-start"></i><span>@Model.RoomCount</span></h2>
+                        <p class="m-b-0">Active <span class="f-right"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-green db-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Customers</h6>
+                        <h2 class="text-end"><i class="fa fa-building float-start"></i><span>@Model.CustomerCount</span></h2>
+                        <p class="m-b-0">Active <span class="float-end"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-4">
+                <div class="card-block card bg-c-pink db-card">
+
+                    <h6 class="m-b-20">Reservations</h6>
+                    <h2 class="text-end"><i class="fa fa-graduation-cap float-start"></i><span>@Model.ReservationCount</span></h2>
+                    <p class="m-b-0">Completed <span class="float-end">@Model.CompletedReservationCount</span></p>
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+   @* else
+    {
+
+        <div class="form-group">
+            <div class="form-control"> <h4>Please click here to <a href="/Login">Login</a> </h4> </div>
+        </div>
+    }*@
+
+}
+
+

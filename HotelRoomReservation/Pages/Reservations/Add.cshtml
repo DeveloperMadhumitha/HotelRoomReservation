@@ -1,0 +1,57 @@
+﻿@page
+@model HotelRoomReservation.Pages.Reservations.AddModel
+@{
+}
+<form method="post">
+    <h4> Add New Reservation </h4>
+    <div class="row">
+        <div class="col-sm-6">
+            <label asp-for="@Model.SelectedCustomerId"></label>
+            <select asp-for="@Model.SelectedCustomerId" asp-items="@Model.CustomerList" class="form-select"></select> 
+        </div>
+       <div class="col-sm-6">
+            <label asp-for="@Model.SelectedRoomId"></label>
+            <select asp-for="@Model.SelectedRoomId" asp-items="@Model.RoomList" class="form-select"></select>
+        </div>
+
+
+    <div class="col-sm-6">
+        <label asp-for="@Model.DateIn"></label>
+        <input type="date" class="form-control" asp-for="@Model.DateIn" />
+    </div>
+
+    <div class="col-sm-6">
+        <label asp-for="@Model.DateOut"></label>
+        <input type="date" class="form-control" asp-for="@Model.DateOut" />
+    </div>
+
+    <div class="col-sm-6">
+        <label asp-for="@Model.Cost"></label>
+        <input type="int" class="form-control" asp-for="@Model.Cost" />
+    </div>
+
+    <div class="col-sm-6">
+        <label asp-for="@Model.PaymentType"></label>
+        <input type="text" class="form-control" asp-for="@Model.PaymentType" />
+    </div>
+
+    <div class="col-sm-6">
+        <label asp-for="@Model.Status"></label>
+        <input type="text" class="form-control" asp-for="@Model.Status" />
+    </div>
+
+
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary ">Submit</button>
+        <a href="/Rooms/List" class="btn btn-primary col-sm-3" role="button">Back</a>
+    </div>
+
+    <div class="form-group">
+        <h5 class="text-success">@Model.SuccessMessage</h5>
+        <h5 class="text-success">@Model.ErrorMessage</h5>
+        <h6 class="text-danger">@Html.ValidationSummary()</h6>
+
+    </div>
+</form>

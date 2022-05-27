@@ -1,0 +1,68 @@
+﻿@page
+@model HotelRoomReservation.Pages.Customers.AddModel
+@{
+}
+<form method="post">
+    <h4> Add New Customer </h4>
+    <div class="col-sm-6">
+        <label asp-for="@Model.CustomerName"></label>
+        <input type="text" class="form-control" asp-for="@Model.CustomerName" />
+        </div>
+        
+    
+
+    <div class=form-check>
+         <div>Gender</div>
+          @foreach (var g in Model.Genders)
+             {
+                <input type="radio" asp-for="@Model.Gender" value="@g"  />
+                @g
+            <br />
+             }
+     </div>
+
+     <div class="row">
+        <div class="col-sm-6">
+        <label asp-for="@Model.Dob"></label>
+        <input type="date" class="form-control" asp-for="@Model.Dob" />
+        </div>
+        <div class="col-sm-6">
+        <label asp-for="@Model.MobileNumber"></label>
+        <input type="text" class="form-control" asp-for="@Model.MobileNumber" />
+        </div>
+        
+    </div>
+
+     <div class="col-sm-6">
+        <label asp-for="@Model.EmailId"></label>
+        <input type="text" class="form-control" asp-for="@Model.EmailId" />
+        </div>
+
+        <div class="col-sm-6">
+        <label asp-for="@Model.City"></label>
+        <input type="text" class="form-control" asp-for="@Model.City" />
+        </div>
+    
+          <div class="col-sm-6">
+        <label asp-for="@Model.State"></label>
+        <input type="text" class="form-control" asp-for="@Model.State" />
+        </div>
+    
+
+    
+    
+       
+    
+
+    <div class="col-sm-6">
+        <button type="submit" class="btn btn-primary ">Submit</button>
+        <a href="/Customers/List" class="btn btn-primary col-sm-3" role="button">Back</a>
+    </div>
+
+    <div class="form-group">
+        <h5 class="text-success">@Model.SuccessMessage</h5>
+        <h5 class="text-success">@Model.ErrorMessage</h5>
+        <h6 class="text-danger">@Html.ValidationSummary()</h6>
+
+    </div>
+</form>
